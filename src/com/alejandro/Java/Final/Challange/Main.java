@@ -65,8 +65,40 @@ public class Main {
     }//MAIN METHOD #1
 
     public static void manageMessages(){
+        System.out.println("Please select one:" +
+                "\n\t1. show all messages" +
+                "\n\t2. Send a new message" +
+                "\n\t3. Go back");
+        int choice = scanner.nextInt();
+        switch(choice){
+            case 1:
+                showAllMessages();
+                break;
+            case 2:
+                sendNewMessage();
+                break;
+            case 3:
+                showInitialOption();
+                break;
+        }
 
     }//MAIN METHOD #2
+
+    private static void showAllMessages() {
+        ArrayList<Message> allMessages = new ArrayList<>();
+        for(Contact c: contacts){
+            allMessages.addAll(c.getMessages());
+        }
+        if(allMessages.size()>0){
+            for(Message m: allMessages){
+                m.getDetails();
+                System.out.println("*****************");
+            }
+        }else{
+            System.out.println("You don't have any message");
+        }
+        showInitialOption();
+    }
 
 
     private static void deleteContact(){
@@ -153,6 +185,7 @@ public class Main {
     private static void showAllContacts() {
         for(Contact c:contacts){
             c.getDetails();
+            System.out.println("********************");
         }
         showInitialOption();
     }
